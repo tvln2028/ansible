@@ -1,24 +1,25 @@
-- name: variable preference
-  hosts: localhost
-  # vars:
-  #   WISHES: "Morning from PLAY variable"
-  vars_files:
-  - vars.yaml
+- name: variables
+  hosts: local
+  connection: local
+  # vars: # PLAY level variables
+  #   GREET: "PLAY"
+  # vars_files:
+  #   - course.yaml
   # vars_prompt:
-  # - name: WISHES
-  #   prompt: Please enter Wishes
+  # - name: GREET
+  #   prompt: Enter the value
   #   private: false
   tasks:
-  - name: check preference
+  - name: print the variable
     # vars:
-    #   WISHES: "Morning from TASK variable"
+    #   GREET: "TASK"
     ansible.builtin.debug:
-      msg: "Hello, Good {{WISHES}}"
+      msg: "Hello from {{ GREET }}"
 
-# 1. arguments
-# 2. Task level
-# 3. variable files
-# 4. Prompt
-# 5. Play level
-# 6. inventory
-# 7. role level
+#1. Command line or args
+#2. Task level
+#3. Files
+#4. Prompt
+#5. Play
+#6. Inventory
+#7. Roles

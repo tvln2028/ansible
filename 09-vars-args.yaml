@@ -1,6 +1,7 @@
-- name: variables from arguments
-  hosts: localhost
+- name: variables
+  hosts: local
+  connection: local
   tasks:
-  - name: get from args
+  - name: print the variable
     ansible.builtin.debug:
-      msg: "Hello {{PERSON}}, Good {{WISHES}}"
+      msg: "Course is {{ COURSE }}, Duration is {{ DURATION }}, Trainer is {{ TRAINER }}"

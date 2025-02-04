@@ -1,20 +1,15 @@
-- name: conditions
-  hosts: web
-  become: yes
+- name: check value is greater than 10 or not
+  hosts: local
+  connection: local
+  vars:
+    my_number: 15
   tasks:
-  - name: check user exists or not
-    ansible.builtin.command: id expense
-    register: USER
-    ignore_errors: true
-
-  - name: print user information
+  - name: print if number greater than 10
     ansible.builtin.debug:
-      msg: "User info: {{USER}}"
+      msg: "Given number {{ my_number }} is greater than 10"
+    when: my_number > 10
 
-  - name: create user
-    ansible.builtin.command: useradd expense
-    when: USER.rc != 0 #condition
-
-  - name: say Hello
+  - name: print if number less than or equal to 10
     ansible.builtin.debug:
-      msg: "Hello"
+      msg: "Given number {{ my_number }} is less than or equal to 10"
+    when: my_number <= 10
